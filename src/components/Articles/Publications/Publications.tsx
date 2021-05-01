@@ -8,25 +8,43 @@ const WrapperPublications = styled.div`
 box-sizing: border-box;
 width: 80%;
 height: 200vh;
-background-color: grey
+background-color: #dee2e6;
+
 `
 const WrapperLatestPublications = styled.div`
 box-sizing: border-box;
-    width: 90%;
-    margin: 0 auto;
-    height: 45vh;
+    width: 93%;
+    margin-left:0;
+    height: 50vh;
     display: flex;
-    background-color: yellow;
-    margin-top: 40px;
+    background-color: white;
+    margin-top: 20px;
+    box-shadow: 0 1px 6px -2px rgba(0,0,0,.2), 0 1px 6px -2px rgba(0,0,0,.2);
+
+   
 `
 
-export const Publications: React.FC= ()=>{
+interface IlatestPublications{
+    userId: number;
+    publicationId: number;
+    userName:string;
+    userImage: string;
+    content: string;
+    publicationImage:string;
+    date: object, 
+}
+interface IlatestPublicationsData{
+   latestPublications: IlatestPublications[];
+   
+}
 
+export const Publications: React.FC<IlatestPublicationsData>= (props)=>{
+    console.log(props)
     return(
         <>
         <WrapperPublications>
             <WrapperLatestPublications>
-                <LatestPublications />
+                <LatestPublications latestPublicationsData = {props.latestPublications}/>
             </WrapperLatestPublications>
         </WrapperPublications>
         </>

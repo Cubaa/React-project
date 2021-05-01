@@ -50,12 +50,71 @@ const WrapperAsideMenuArticles = styled.div`
 const user = {
     userName: "Jakub Ziemiański"
 }
+
+const latestPublications = [
+    {
+        userId: 1,
+        publicationId: 1,
+        userName: "John Doe",
+        userImage: "/media/scott-graham-OQMZwNd3ThU-unsplash (1).jpg",
+        content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt consequatur unde quia voluptates.",
+        publicationImage: "/media/scott-graham-OQMZwNd3ThU-unsplash (1).jpg",
+        date: {
+            day: 7,
+            month: 2,
+            year: 2020
+        }, 
+    },
+    {
+        userId: 1,
+        publicationId: 1,
+        userName: "John Doe",
+        userImage: "/media/scott-graham-OQMZwNd3ThU-unsplash (1).jpg",
+        content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt consequatur unde quia voluptates.",
+        publicationImage: "/media/scott-graham-OQMZwNd3ThU-unsplash (1).jpg",
+        date: {
+            day: 7,
+            month: 2,
+            year: 2020
+        }, 
+    },
+    {
+        userId: 1,
+        publicationId: 1,
+        userName: "John Doe",
+        userImage: "/media/scott-graham-OQMZwNd3ThU-unsplash (1).jpg",
+        content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt consequatur unde quia voluptates.",
+        publicationImage: "/media/scott-graham-OQMZwNd3ThU-unsplash (1).jpg",
+        date: {
+            day: 7,
+            month: 1,
+            year: 2020
+        }, 
+    },
+    {
+        userId: 3,
+        publicationId: 1,
+        userName: "John Doe",
+        userImage: "/media/scott-graham-OQMZwNd3ThU-unsplash (1).jpg",
+        content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt consequatur unde quia voluptates.",
+        publicationImage: "/media/scott-graham-OQMZwNd3ThU-unsplash (1).jpg",
+        date: {
+            day: 7,
+            month: 2,
+            year: 2020
+        }, 
+    },
+]
 export const MainPage: React.FC = ()=>{
     console.log(user.userName)
+
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch<GetUsers>(getUsers())
     }, [])
+    // console.log(latestPublications)
+   
+  
     return(
 <>
     <Router>
@@ -73,10 +132,11 @@ export const MainPage: React.FC = ()=>{
                     <Home />
                 </Route> */}
                 <Route exact path='/'>
-                    <Publications />
+                    {/* <Publications /> */}
+                    <h1>Main Page</h1>
                 </Route> 
                 <Route path='/publications'>
-                    <Publications />
+                    <Publications  latestPublications = {latestPublications} />
                 </Route> 
                 
                 <Route path='/ecosystem'>
