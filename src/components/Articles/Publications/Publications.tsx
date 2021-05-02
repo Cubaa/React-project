@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
-
+import {WorkspacesSlider} from './WorkspacesSlider/WorkspacesSlider'
 import {LatestPublications} from './LatestPublications/LatestPublications'
 
 
@@ -9,6 +9,16 @@ box-sizing: border-box;
 width: 80%;
 height: 200vh;
 background-color: #dee2e6;
+text-align: left;
+>h4{
+    margin:0;
+    margin-left: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: #232C47;
+    font-size: 18px;
+
+}
 
 `
 const WrapperLatestPublications = styled.div`
@@ -23,7 +33,12 @@ box-sizing: border-box;
 
    
 `
+const WrapperWorkspacesSlider = styled.div`
+width: 93%;
+height: 35vh;
 
+
+`
 interface IlatestPublications{
     userId: number;
     publicationId: number;
@@ -46,6 +61,10 @@ export const Publications: React.FC<IlatestPublicationsData>= (props)=>{
             <WrapperLatestPublications>
                 <LatestPublications latestPublicationsData = {props.latestPublications}/>
             </WrapperLatestPublications>
+            <h4>Workspaces</h4>
+            <WrapperWorkspacesSlider>
+               <WorkspacesSlider />
+            </WrapperWorkspacesSlider>
         </WrapperPublications>
         </>
     )

@@ -18,7 +18,7 @@ import {getUsers} from '../../actions/usersActions'
 
 type GetUsers = ReturnType<typeof getUsers>
   const WrapperMainPage = styled.body`
- 
+  background-color: #dee2e6;
  
   `
 const WrapperNavigation = styled.header`

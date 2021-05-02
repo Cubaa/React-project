@@ -56,12 +56,17 @@ display: flex;
     text-align: left;
   
 }
->p:nth-of-type(1){
+>a{
+    display: block;
     width: 80%;
+    font-size: 14px;
     margin:0;
     padding: 0px 0px 0px 5px;
+    color: white;
+    text-align: left;
+    text-decoration: none;
 }
->p: nth-of-type(2){
+>p: nth-of-type(1){
     display: flex;
     font-size: 12px;
  
@@ -71,11 +76,11 @@ display: flex;
     padding: 0px 0px 5px 5px;
   
 }
->p: nth-of-type(2) span{
+>p: nth-of-type(1) span{
    margin-right: 8px;
    color: rgba(255, 255, 255, 0.8);
 }
->p: nth-of-type(2) div{
+>p: nth-of-type(1) div{
     background-color: yellow;
     width: 20px;
     height: 20px;
@@ -151,7 +156,7 @@ display: flex;
 flex-direction: column;
 width: 100%;
 justify-content: center;
->p:nth-of-type(1){
+>a{
     margin:0;
    text-align:left;
     font-size: 12px;
@@ -159,8 +164,9 @@ justify-content: center;
     color: #232C47;
     font-weight: bold;
     padding-bottom: 8px;
+    text-decoration: none;
 }
->p:nth-of-type(2){
+>p:nth-of-type(1){
     display: flex;
     align-items: center;
     margin:0;
@@ -169,14 +175,14 @@ justify-content: center;
     margin-bottom:8px;
   
 }
->p:nth-of-type(2) > div{
+>p:nth-of-type(1) > div{
     width: 20px;
     height: 20px;
     background-color: yellow;
     border-radius: 50%;
     margin-right: 8px;
 }
->p:nth-of-type(2)>span{
+>p:nth-of-type(1)>span{
     margin-right: 8px;
     font-weight: bold;
     color: rgba(0, 0, 0, 0.7);
@@ -232,7 +238,7 @@ const otherLatestPublications = newArrLatestPublications.map((publication)=>{
                     <img src={publication.publicationImage} alt=""/>
                 </WrapperPublicationImage>
                 <WrapperUserDataCard>
-                    <p>{publication.content}</p>
+                    <a href="#">{publication.content}</a>
                     <p>
                         <span>7 jan, 2020</span>
                         <div>
@@ -252,7 +258,7 @@ const otherLatestPublications = newArrLatestPublications.map((publication)=>{
                 <DarkLayout></DarkLayout>
                 <img src="/media/matthew-henry-VviFtDJakYk-unsplash (2).jpg" alt="image"/>
                 <WrapperUserInfo>
-                    <p>{theNewestPublications[0].content}</p>
+                    <a href="#">{theNewestPublications[0].content}</a>
                     <p>
                         <span>7 jan, 2020</span>
                         <div>
