@@ -10,7 +10,7 @@ import {HomeBtn} from '../Navigation/HomeBtn/HomeBtn'
 import {ArrowDownBtn} from '../Navigation/ArrowDownBtn/ArrowDownBtn'
 import {NavInput} from '../Navigation/NavInput/NavInput'
 import {NotificationsBtn} from '../Navigation/NotificationsBtn/NotificationsBtn'
-
+import {ISingleUser} from '../../entities/users'
 const WrappperLogoHomeBtnArrowDownBtn = styled.div`
 display: flex;
 width: 30%;
@@ -26,15 +26,22 @@ height: 8vh;
 justify-content: flex-end;
 `
 interface IUser{
-    userName: String;
+    loggedUserData: ISingleUser[];
+}
+interface IUserName{
+    userName: string;
 }
 export const Navigation: React.FC<IUser> = (props)=>{
+   const userName: IUserName = {
+       userName: props.loggedUserData[0].name 
+   }
+    
     return(
         <>
         <WrappperLogoHomeBtnArrowDownBtn>
             <Logo />
             <HomeBtn />
-            <ArrowDownBtn userName = {props.userName}/>
+            <ArrowDownBtn userName = {userName.userName}/>
         </WrappperLogoHomeBtnArrowDownBtn>
             <NavInput />
         <WrapperNotificationsBtn>

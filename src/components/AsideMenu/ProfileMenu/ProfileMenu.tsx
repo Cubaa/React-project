@@ -41,15 +41,24 @@ height: 18vh;
 padding-left: 5px;
 padding-right: 5px;
 `
+interface IUserData{
+    name: string;
+    companyName: string;
+    catchPhrase: string;
+}
+interface IUserInfo{
+    userInfo: IUserData
+}
 
-export const ProfileMenu: React.FC= ()=>{
+export const ProfileMenu: React.FC<IUserInfo>= (props)=>{
+    console.log(props.userInfo)
     return(
         <>
         <WrapperProfileDetails>
            {/* <img src="" alt=""/>  tymczasowo tworzę diva, który będzie symulował zdjęcie profilowe użytkownika*/} 
            <div></div>
-            <span>Humberta Swift</span>
-            <span>Job title - Company</span>
+            <span>{props.userInfo.name}</span>
+            <span>{props.userInfo.catchPhrase} - {props.userInfo.companyName}</span>
             <span></span>
         </ WrapperProfileDetails>  
         <WrapperProfileOptions>

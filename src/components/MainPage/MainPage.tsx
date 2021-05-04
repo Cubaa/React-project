@@ -7,7 +7,9 @@ import {Publications} from '../Articles/Publications/Publications'
 import {Ecosystem} from '../Articles/Ecosystem/Ecosystem'
 import {Entities} from '../Articles/Entities/Entities'
 import {useDispatch} from 'react-redux'
-
+import {useSelector} from 'react-redux'
+import {IState} from '../../reducers'
+import {IUsersReducer} from '../../reducers/usersReducers'
 import {
     BrowserRouter as Router,
     Switch,
@@ -113,18 +115,27 @@ export const MainPage: React.FC = ()=>{
         dispatch<GetUsers>(getUsers())
     }, [])
     // console.log(latestPublications)
-   
-  
+   const { usersList } = useSelector<IState, IUsersReducer>(globalState =>globalState.users)
+   console.log(usersList)
+   if(usersList.length===0)
+    return null;
+  const loggedUserData = usersList.filter((user)=>{
+      if(user.username==='Antonette')
+        return user;
+  })
+  console.log(loggedUserData)
+  console.log(loggedUserData[0])
     return(
 <>
     <Router>
+      {console.log({usersList})}
         <WrapperMainPage>
         <WrapperNavigation>
-            <Navigation userName={user.userName}/>
+            <Navigation loggedUserData={loggedUserData}/>
          </WrapperNavigation>
          <WrapperAsideMenuArticles>
          <WrapperAsideMenu>
-            <AsideMenu />
+            <AsideMenu loggedUserData={loggedUserData}/>
          </WrapperAsideMenu>
       
          <Switch>

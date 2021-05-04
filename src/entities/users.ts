@@ -1,7 +1,8 @@
-export interface ISingleUSer{
+export interface ISingleUser{
     id: number;
     name: string;
     email: string;
+    username: string;
     address: {
         street: string;
         suite: string;

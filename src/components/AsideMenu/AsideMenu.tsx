@@ -2,7 +2,7 @@ import React from 'react';
 import {ProfileLinks} from './ProfileLinks/ProfileLinks'
 import {ProfileMenu} from './ProfileMenu/ProfileMenu'
 import styled from 'styled-components'
-
+import {ISingleUser} from '../../entities/users'
 const WrapperProfileMenu = styled.div`
     width: 85%;
     height: 39vh;
@@ -13,15 +13,27 @@ const WrapperProfileMenu = styled.div`
     margin: 0 auto;
     box-shadow: 0 1px 6px -2px rgba(0,0,0,.2), 0 1px 6px -2px rgba(0,0,0,.2);
 `
-
-
-export const AsideMenu: React.FC = () =>{
-    
+interface IUser{
+    loggedUserData: ISingleUser[];
+}
+interface IUserData{
+    name: string;
+    companyName: string;
+    catchPhrase: string;
+}
+export const AsideMenu: React.FC<IUser> = (props) =>{
+    console.log(props?.loggedUserData)
+    console.log(props.loggedUserData[0].name)
+    const userData:IUserData = {
+        name: props.loggedUserData[0].name, 
+        companyName: props.loggedUserData[0].company.name,
+        catchPhrase: props.loggedUserData[0].company.catchPhrase
+    }
     return(
         <>
          
                 <WrapperProfileMenu>
-                    <ProfileMenu />
+                    <ProfileMenu userInfo = {userData}/>
                 </WrapperProfileMenu>
                     <ProfileLinks/>
           
