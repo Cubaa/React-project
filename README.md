@@ -1,4 +1,4 @@
-Ten projekt nie jest jeszcze ukończony, ale pokazuje choć podstawową znajomość Reacta + Reduxa. Na bieżąco jest aktualizowany.
+Projekt (na zajęcia) jest pisany w React + TypeScript i nie jest jeszcze ukończony, ale pokazuje choć podstawową znajomość Reacta + Reduxa. Na bieżąco jest aktualizowany.
 
 # Getting Started with Create React App
 
