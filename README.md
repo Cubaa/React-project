@@ -1,3 +1,5 @@
+Ten projekt nie jest jeszcze ukończony, ale pokazuje choć podstawową znajomość Reacta + Reduxa. Na bieżąco jest aktualizowany.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
