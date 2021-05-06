@@ -1,3 +1,5 @@
+Projekt (na zajęcia) jest pisany w React + TypeScript i nie jest jeszcze ukończony, ale pokazuje choć podstawową znajomość Reacta + Reduxa i TypeScripta. Na bieżąco jest aktualizowany.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
