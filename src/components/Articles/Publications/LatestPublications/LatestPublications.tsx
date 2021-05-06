@@ -1,9 +1,8 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import styled from 'styled-components'
 import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript'
-
-
-
+import {ISingleLatestPublication} from '../../../../entities/usersLatestPosts'
+import {ISingleUser} from '../../../../entities/users'
 
 const WrapperTheNewestPublications = styled.div`
 box-sizing: border-box;
@@ -20,6 +19,7 @@ z-index:999;
     width:100%;
     height:100%;
 }
+
 
 
 
@@ -58,10 +58,10 @@ display: flex;
 }
 >a{
     display: block;
-    width: 80%;
-    font-size: 14px;
+    width: 100%;
+    font-size: 17px;
     margin:0;
-    padding: 0px 0px 0px 5px;
+    padding: 0px 0px 4px 5px;
     color: white;
     text-align: left;
     text-decoration: none;
@@ -87,6 +87,12 @@ display: flex;
     border-radius: 50%;
     border: 1px solid black;
     margin-right: 8px;
+ }
+ >p: nth-of-type(1) div img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit:cover;
  }
 
 `
@@ -159,7 +165,7 @@ justify-content: center;
 >a{
     margin:0;
    text-align:left;
-    font-size: 12px;
+    font-size: 16px;
     margin-left: 5px;
     color: #232C47;
     font-weight: bold;
@@ -182,71 +188,64 @@ justify-content: center;
     border-radius: 50%;
     margin-right: 8px;
 }
+>p: nth-of-type(1) div img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit:cover;
+ }
 >p:nth-of-type(1)>span{
     margin-right: 8px;
     font-weight: bold;
     color: rgba(0, 0, 0, 0.7);
 }
 `
-// enum numberDatatoStringData{
-//     jan = 1,
-//     feb = 2,
-//     march = 3,
-//     april = 4,
-//     may = 5,
-//     june = 6,
-//     july = 7,
-//     aug = 8,
-//     sep = 9,
-//     oct = 10,
-//     nov = 11,
-//     dec = 12
-    
-// }
 
 
-interface IlatestPublications{
-    userId: number;
-    publicationId: number;
-    userName:string;
-    userImage: string;
-    content: string;
-    publicationImage:string;
-    date: any;
-}
-
-interface IlatestPublicationsData{
-    latestPublicationsData: IlatestPublications[]
+interface IUserInfoData{
+    usersLatestPublicationsList: ISingleLatestPublication[],
+    loggedUser: ISingleUser[];
+    userAvatar: string;
     
 }
 
-export const LatestPublications: React.FC<IlatestPublicationsData> = (props)=>{
-     console.log(props.latestPublicationsData)
-     const newArrLatestPublications = [...props.latestPublicationsData]
-     const theNewestPublications = newArrLatestPublications.splice(newArrLatestPublications.length-1 ,1)
-     console.log(theNewestPublications)
-     console.log(newArrLatestPublications)
 
+
+
+export const LatestPublications: React.FC<IUserInfoData> = (props)=>{
+
+   console.log("chujek")
+   const newArrayusersLatestpublicationsList = props.usersLatestPublicationsList?.map((item)=>item)
+    newArrayusersLatestpublicationsList?.splice(0, (newArrayusersLatestpublicationsList.length-1)-3)
+    const theNewestPublications = newArrayusersLatestpublicationsList?.splice(0, 1)
     
-  
-    //console.log(theNewestPublications)
-const otherLatestPublications = newArrLatestPublications.map((publication)=>{
-   return(
+    console.log(newArrayusersLatestpublicationsList)
+    console.log(theNewestPublications)
+
+
+     
+   
+const otherLatestPublications = newArrayusersLatestpublicationsList.map((publication)=>{
+return(
        <>
-            <WrapperLatestPublicationCard>
-                <WrapperPublicationImage>
-                    <img src={publication.publicationImage} alt=""/>
-                </WrapperPublicationImage>
-                <WrapperUserDataCard>
-                    <a href="#">{publication.content}</a>
-                    <p>
-                        <span>7 jan, 2020</span>
-                        <div>
-                            <img src="" alt=""/>
+       {/* {console.log("LISTA PUBLIKCAJI " + usersLatestPublicationsList)}
+       {console.log(usersLatestPublicationsList)} */}
+
+            
+           <WrapperLatestPublicationCard>
+               <WrapperPublicationImage>
+                     <img src="/media/scott-graham-OQMZwNd3ThU-unsplash (1).jpg" alt=""/>
+               </WrapperPublicationImage>
+              <WrapperUserDataCard>
+                   <a href="#">{publication.title}</a>
+                   <p>
+                      <span>7 jan, 2020</span>
+                         <div>
+                           <img src={props.userAvatar} alt=""/>
                         </div>
-                        <span>{publication.userName}</span>
-                    </p>
-                </WrapperUserDataCard>
+                       <span>{props.loggedUser[0].name}</span>
+                     </p>
+                 </WrapperUserDataCard>
             </WrapperLatestPublicationCard>
        </>
    )
@@ -258,13 +257,13 @@ const otherLatestPublications = newArrLatestPublications.map((publication)=>{
                 <DarkLayout></DarkLayout>
                 <img src="/media/matthew-henry-VviFtDJakYk-unsplash (2).jpg" alt="image"/>
                 <WrapperUserInfo>
-                    <a href="#">{theNewestPublications[0].content}</a>
+                    <a href="#">{theNewestPublications[0]?.title}</a>
                     <p>
                         <span>7 jan, 2020</span>
                         <div>
-                            <img src="" alt=""/>
+                            <img src={props.userAvatar} alt=""/>
                         </div>
-                        <span>{theNewestPublications[0].userName}</span>
+                        <span>{props.loggedUser[0].name}</span>
                     </p>
                 </WrapperUserInfo>
             </WrapperTheNewestPublications>

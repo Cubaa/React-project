@@ -68,6 +68,9 @@ border:1px solid black;
 border-radius: 50%;
 >img{
     width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
 }
 `
 const WrapperAccountSettings = styled.div`
@@ -104,6 +107,7 @@ margin-left: 20px;
 background-color: white;
 padding-top: 5px;
 >img{
+  
     width: 25px;
 }
 >li{
@@ -123,6 +127,7 @@ display: flex;
 justify-content: center;
 padding: 8px 0px 8px 0px;
 >img{
+    
     width: 18px;
     margin-right: 10px;
 }
@@ -134,6 +139,7 @@ padding: 8px 0px 8px 0px;
 `
 interface IUser{
     userName: String;
+    userAvatar: string;
 }
 
 export const AccountInfo: React.FC<IUser>= (props:IUser)=>{
@@ -145,7 +151,7 @@ export const AccountInfo: React.FC<IUser>= (props:IUser)=>{
             <ul>
                 <li>
                     <WrapperUserImg>
-                    <img src="" alt=""/>
+                    <img src={props.userAvatar} alt=""/>
                     </WrapperUserImg>
                     <WrapperUserInfo>
                     <span>{props.userName}</span>

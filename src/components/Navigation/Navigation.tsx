@@ -25,23 +25,24 @@ width: 32%;
 height: 8vh;
 justify-content: flex-end;
 `
-interface IUser{
+interface IUserData{
     loggedUserData: ISingleUser[];
+    userPhoto: string;
 }
-interface IUserName{
-    userName: string;
-}
-export const Navigation: React.FC<IUser> = (props)=>{
-   const userName: IUserName = {
-       userName: props.loggedUserData[0].name 
-   }
+
+
+export const Navigation: React.FC<IUserData> = (props)=>{
+   const userName = props.loggedUserData[0].name
+   const userAvatar = props.userPhoto
+   
+   const userInfo = {userAvatar, userName}
     
     return(
         <>
         <WrappperLogoHomeBtnArrowDownBtn>
             <Logo />
             <HomeBtn />
-            <ArrowDownBtn userName = {userName.userName}/>
+            <ArrowDownBtn  {...userInfo}/>
         </WrappperLogoHomeBtnArrowDownBtn>
             <NavInput />
         <WrapperNotificationsBtn>

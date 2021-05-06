@@ -42,6 +42,7 @@ border-top: .2px solid black;
 `
 interface IUser{
     userName: String;
+    userAvatar: string;
 }
 
 export const DropdownMenu: React.FC<IUser> = (props)=>{
@@ -125,6 +126,9 @@ const [searchMenuelements, setSearchMenuElements] = useState([...platformsWorksp
         console.log(searchMenuelements)
      
     }
+    const userName = props.userName
+    const userAvatar = props.userAvatar
+    const userInfo = {userName, userAvatar}
     
     return(
         
@@ -135,7 +139,7 @@ const [searchMenuelements, setSearchMenuElements] = useState([...platformsWorksp
             <div>
                 <InputDropdownMenu searcherFunction= {inputDropdownMenuHandler}/>
                 <PlatformWorkspacesLists dropdownMenuElements = {searchMenuelements} />
-                <AccountInfo userName= {props.userName}/>
+                <AccountInfo {...userInfo}/>
                 {/* <PlatformList />
                 <WorkspacesList />
                 <AccountList /> */}

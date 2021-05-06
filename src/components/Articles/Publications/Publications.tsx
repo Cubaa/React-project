@@ -1,9 +1,16 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect } from 'react'
 import styled from 'styled-components'
 import {WorkspacesSlider} from './WorkspacesSlider/WorkspacesSlider'
 import {LatestPublications} from './LatestPublications/LatestPublications'
+import {useDispatch} from 'react-redux'
+import {useSelector} from 'react-redux'
+import {IState} from '../../../reducers'
+import {IUsersLatestPublicationsReducer} from '../../../reducers/usersLatestPublicationsReducers'
+import {ISingleUser} from '../../../entities/users'
+import {getUsersLatestPublications} from '../../../actions/usersLatestPublicationsAction'
+import { userInfo } from 'node:os'
 
-
+type GetUsersLatestPublications = ReturnType<typeof getUsersLatestPublications>
 const WrapperPublications = styled.div`
 box-sizing: border-box;
 width: 80%;
@@ -39,27 +46,35 @@ height: 35vh;
 
 
 `
-interface IlatestPublications{
-    userId: number;
-    publicationId: number;
-    userName:string;
-    userImage: string;
-    content: string;
-    publicationImage:string;
-    date: object, 
-}
-interface IlatestPublicationsData{
-   latestPublications: IlatestPublications[];
-   
+interface IUser{
+    loggedUserData: ISingleUser[];
+    userPhoto: string;
 }
 
-export const Publications: React.FC<IlatestPublicationsData>= (props)=>{
+
+
+export const Publications: React.FC<IUser>= (props)=>{
+    console.log(props.loggedUserData)
+    const dispatch = useDispatch()
+    useEffect(()=>{
+
+        dispatch<GetUsersLatestPublications>(getUsersLatestPublications(props.loggedUserData[0].id))
+    },[props.loggedUserData[0].id])
+
+    const {usersLatestPublicationsList} = useSelector<IState, IUsersLatestPublicationsReducer>(globalState=>({
+        ...globalState.usersLatestPublicationsList
+    }))
+    console.log(usersLatestPublicationsList)
+    
     console.log(props)
+    const loggedUser = props.loggedUserData
+    const userAvatar = props.userPhoto
+    const userInfoData = {loggedUser, usersLatestPublicationsList, userAvatar}
     return(
         <>
         <WrapperPublications>
             <WrapperLatestPublications>
-                <LatestPublications latestPublicationsData = {props.latestPublications}/>
+                <LatestPublications {...userInfoData}/>
             </WrapperLatestPublications>
             <h4>Workspaces</h4>
             <WrapperWorkspacesSlider>

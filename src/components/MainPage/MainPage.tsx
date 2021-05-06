@@ -10,6 +10,9 @@ import {useDispatch} from 'react-redux'
 import {useSelector} from 'react-redux'
 import {IState} from '../../reducers'
 import {IUsersReducer} from '../../reducers/usersReducers'
+import {IUsersLatestPublicationsReducer} from '../../reducers/usersLatestPublicationsReducers'
+import {IUsersPhotosReducer} from '../../reducers/usersPhotosReducers'
+
 import {
     BrowserRouter as Router,
     Switch,
@@ -17,8 +20,12 @@ import {
     Link
   } from "react-router-dom";
 import {getUsers} from '../../actions/usersActions'
+import {getUsersLatestPublications} from '../../actions/usersLatestPublicationsAction'
+import {getUsersPhotos} from '../../actions/usersPhotosActions'
 
 type GetUsers = ReturnType<typeof getUsers>
+type GetUsersPhotos = ReturnType<typeof getUsersPhotos>
+
   const WrapperMainPage = styled.body`
   background-color: #dee2e6;
  
@@ -108,34 +115,62 @@ const latestPublications = [
     },
 ]
 export const MainPage: React.FC = ()=>{
-    console.log(user.userName)
-
+ 
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch<GetUsers>(getUsers())
+        dispatch<GetUsersPhotos>(getUsersPhotos())
     }, [])
+  
+    
     // console.log(latestPublications)
-   const { usersList } = useSelector<IState, IUsersReducer>(globalState =>globalState.users)
-   console.log(usersList)
-   if(usersList.length===0)
+   const { usersList } = useSelector<IState, IUsersReducer >(globalState =>({
+    ...globalState.users,
+   
+    
+}))
+const { usersPhotosList } = useSelector<IState, IUsersPhotosReducer >(globalState =>({
+    ...globalState.usersPhotosList,
+   
+    
+}))
+
+ if(usersList.length===0)
     return null;
+
   const loggedUserData = usersList.filter((user)=>{
-      if(user.username==='Antonette')
+      if(user.username==='Bret')
         return user;
   })
-  console.log(loggedUserData)
-  console.log(loggedUserData[0])
+//   console.log(usersPhotosList[0]?.data.avatar.length)
+  const userPhotoInfo = Object.values(usersPhotosList)
+
+  const userPhoto = userPhotoInfo[0].avatar
+  console.log(userPhoto)
+
+
+
+      
+  
+// const userAvatar = userPhotoInfo?.map((item)=>{
+//     return item.data
+// })
+// console.log(userAvatar)
+
+  const loggedUserDataPhoto = {loggedUserData, userPhoto}
+  
     return(
 <>
     <Router>
-      {console.log({usersList})}
+
+      
         <WrapperMainPage>
         <WrapperNavigation>
-            <Navigation loggedUserData={loggedUserData}/>
+            <Navigation {...loggedUserDataPhoto}/>
          </WrapperNavigation>
          <WrapperAsideMenuArticles>
          <WrapperAsideMenu>
-            <AsideMenu loggedUserData={loggedUserData}/>
+            <AsideMenu {...loggedUserDataPhoto}/>
          </WrapperAsideMenu>
       
          <Switch>
@@ -147,7 +182,7 @@ export const MainPage: React.FC = ()=>{
                     <h1>Main Page</h1>
                 </Route> 
                 <Route path='/publications'>
-                    <Publications  latestPublications = {latestPublications} />
+                    <Publications  {...loggedUserDataPhoto} />
                 </Route> 
                 
                 <Route path='/ecosystem'>

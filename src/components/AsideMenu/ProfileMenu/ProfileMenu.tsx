@@ -17,6 +17,12 @@ justify-content: center;
     border-radius: 50%;
     margin-bottom: 8px;
 }
+>div>img{
+    width:100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
 >span:nth-of-type(1){
     margin-bottom: 10px;
     color: #184e77;
@@ -46,19 +52,24 @@ interface IUserData{
     companyName: string;
     catchPhrase: string;
 }
+
 interface IUserInfo{
-    userInfo: IUserData
+    userData: IUserData,
+    userAvatar: string;
 }
 
+
 export const ProfileMenu: React.FC<IUserInfo>= (props)=>{
-    console.log(props.userInfo)
+    console.log(props.userData)
     return(
         <>
         <WrapperProfileDetails>
            {/* <img src="" alt=""/>  tymczasowo tworzę diva, który będzie symulował zdjęcie profilowe użytkownika*/} 
-           <div></div>
-            <span>{props.userInfo.name}</span>
-            <span>{props.userInfo.catchPhrase} - {props.userInfo.companyName}</span>
+           <div>
+               <img src={props.userAvatar} alt=""/>
+           </div>
+            <span>{props.userData.name}</span>
+            <span>{props.userData.catchPhrase} - {props.userData.companyName}</span>
             <span></span>
         </ WrapperProfileDetails>  
         <WrapperProfileOptions>

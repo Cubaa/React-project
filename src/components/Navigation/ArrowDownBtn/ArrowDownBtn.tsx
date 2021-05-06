@@ -16,11 +16,14 @@ background-color: red;
 `
 interface IUser{
     userName: String;
+    userAvatar: string;
 }
 export const ArrowDownBtn: React.FC<IUser> = (props)=>{
     const [wrapperRef, dropdownOpen, toggleDropdown, closeDropdown] = useDropdown();
     const dropdownFilter = ():void=> console.log("Klik - drowpdown filter")
-
+    const userName = props.userName
+    const userAvatar = props.userAvatar
+    const userInfo = {userName, userAvatar}
     return(
         <>
      
@@ -30,7 +33,7 @@ export const ArrowDownBtn: React.FC<IUser> = (props)=>{
                 <img src="/media/arrow-down.svg" alt="arrow down" style={{width:'10px', height:'10px', position:'absolute', top:'50%', left:'50%', transform:'translate(-50%, -50%)'}}/>
             </a>
             </WrapperArrowDown>
-            {dropdownOpen && <DropdownMenu userName = {props.userName}/>}
+            {dropdownOpen && <DropdownMenu {...userInfo}/>}
             </div>
       
         </>

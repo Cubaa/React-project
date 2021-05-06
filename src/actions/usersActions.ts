@@ -13,3 +13,4 @@ export const getUsers = (): Promise<ISingleUser[]> =>((dispatch: Dispatch) =>{
             })
         })
 }) as any;
+

@@ -15,6 +15,7 @@ const WrapperProfileMenu = styled.div`
 `
 interface IUser{
     loggedUserData: ISingleUser[];
+    userPhoto: string;
 }
 interface IUserData{
     name: string;
@@ -29,11 +30,13 @@ export const AsideMenu: React.FC<IUser> = (props) =>{
         companyName: props.loggedUserData[0].company.name,
         catchPhrase: props.loggedUserData[0].company.catchPhrase
     }
+const userAvatar = props.userPhoto
+    const userInfo = {userData, userAvatar}
     return(
         <>
          
                 <WrapperProfileMenu>
-                    <ProfileMenu userInfo = {userData}/>
+                    <ProfileMenu {...userInfo}/>
                 </WrapperProfileMenu>
                     <ProfileLinks/>
           
