@@ -143,8 +143,8 @@ justify-content: center;
 const WrapperPublicationImage = styled.div`
 box-sizing: border-box;
 display: flex;
-width: 90px;
-height: 65px;
+max-width: 80px;
+height: 60px;
 margin-top: 5px;
 margin-bottom: 5px;
 margin-left: 5px;
@@ -152,6 +152,7 @@ margin-right: 5px;
 
 
 >img{
+    
     object-fit: cover;
     width: 100%;
     height: 100%;
@@ -203,7 +204,7 @@ justify-content: center;
 
 
 interface IUserInfoData{
-    usersLatestPublicationsList: ISingleLatestPublication[],
+    yoursPosts: ISingleLatestPublication[],
     loggedUser: ISingleUser[];
     userAvatar: string;
     
@@ -215,7 +216,7 @@ interface IUserInfoData{
 export const LatestPublications: React.FC<IUserInfoData> = (props)=>{
 
    console.log("chujek")
-   const newArrayusersLatestpublicationsList = props.usersLatestPublicationsList?.map((item)=>item)
+   const newArrayusersLatestpublicationsList = props.yoursPosts?.map((item)=>item)
     newArrayusersLatestpublicationsList?.splice(0, (newArrayusersLatestpublicationsList.length-1)-3)
     const theNewestPublications = newArrayusersLatestpublicationsList?.splice(0, 1)
     
@@ -225,7 +226,7 @@ export const LatestPublications: React.FC<IUserInfoData> = (props)=>{
 
      
    
-const otherLatestPublications = newArrayusersLatestpublicationsList.map((publication)=>{
+const otherLatestPublications = newArrayusersLatestpublicationsList?.map((publication)=>{
 return(
        <>
        {/* {console.log("LISTA PUBLIKCAJI " + usersLatestPublicationsList)}

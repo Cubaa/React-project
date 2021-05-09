@@ -9,12 +9,13 @@ import {IUsersLatestPublicationsReducer} from '../../../reducers/usersLatestPubl
 import {ISingleUser} from '../../../entities/users'
 import {getUsersLatestPublications} from '../../../actions/usersLatestPublicationsAction'
 import { userInfo } from 'node:os'
+import {PostedPostsSection} from './PostedPosts/PostedPostsSection'
 
 type GetUsersLatestPublications = ReturnType<typeof getUsersLatestPublications>
 const WrapperPublications = styled.div`
 box-sizing: border-box;
 width: 80%;
-height: 200vh;
+min-height: 200vh;
 background-color: #dee2e6;
 text-align: left;
 >h4{
@@ -43,7 +44,16 @@ box-sizing: border-box;
 const WrapperWorkspacesSlider = styled.div`
 width: 93%;
 height: 35vh;
+`
 
+const WrapperPostedPostsSection = styled.div`
+box-sizing: border-box;
+width: 93%;
+min-height: 80vh;
+display: flex;
+margin-top: 20px;
+margin-bottom: 20px;
+flex-direction: column;
 
 `
 interface IUser{
@@ -58,18 +68,28 @@ export const Publications: React.FC<IUser>= (props)=>{
     const dispatch = useDispatch()
     useEffect(()=>{
 
-        dispatch<GetUsersLatestPublications>(getUsersLatestPublications(props.loggedUserData[0].id))
-    },[props.loggedUserData[0].id])
+        dispatch<GetUsersLatestPublications>(getUsersLatestPublications())
+    },[])
 
     const {usersLatestPublicationsList} = useSelector<IState, IUsersLatestPublicationsReducer>(globalState=>({
         ...globalState.usersLatestPublicationsList
     }))
     console.log(usersLatestPublicationsList)
-    
-    console.log(props)
+    // console.log(usersLatestPublicationsList.length)
+  
+    const a = usersLatestPublicationsList
+  
+ 
+    const yoursPosts = a.filter((item)=>{
+        if(item.userId===props.loggedUserData[0].id)
+            return item;
+    })
+    console.log(yoursPosts)
+    console.log(usersLatestPublicationsList)
     const loggedUser = props.loggedUserData
     const userAvatar = props.userPhoto
-    const userInfoData = {loggedUser, usersLatestPublicationsList, userAvatar}
+    const userInfoData = {loggedUser, yoursPosts, userAvatar}
+    const postedPodts = {loggedUser, yoursPosts, usersLatestPublicationsList}
     return(
         <>
         <WrapperPublications>
@@ -80,6 +100,10 @@ export const Publications: React.FC<IUser>= (props)=>{
             <WrapperWorkspacesSlider>
                <WorkspacesSlider />
             </WrapperWorkspacesSlider>
+            <WrapperPostedPostsSection>
+                <PostedPostsSection {...postedPodts}/>
+            </WrapperPostedPostsSection>
+
         </WrapperPublications>
         </>
     )

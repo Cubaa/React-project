@@ -28,6 +28,7 @@ type GetUsersPhotos = ReturnType<typeof getUsersPhotos>
 
   const WrapperMainPage = styled.body`
   background-color: #dee2e6;
+  min-height: 200vh;
  
   `
 const WrapperNavigation = styled.header`
@@ -145,7 +146,7 @@ const { usersPhotosList } = useSelector<IState, IUsersPhotosReducer >(globalStat
 //   console.log(usersPhotosList[0]?.data.avatar.length)
   const userPhotoInfo = Object.values(usersPhotosList)
 
-  const userPhoto = userPhotoInfo[0].avatar
+  const userPhoto = userPhotoInfo[0]?.avatar
   console.log(userPhoto)
 
 
@@ -178,8 +179,7 @@ const { usersPhotosList } = useSelector<IState, IUsersPhotosReducer >(globalStat
                     <Home />
                 </Route> */}
                 <Route exact path='/'>
-                    {/* <Publications /> */}
-                    <h1>Main Page</h1>
+                    <Publications {...loggedUserDataPhoto}/>
                 </Route> 
                 <Route path='/publications'>
                     <Publications  {...loggedUserDataPhoto} />
