@@ -11,13 +11,15 @@ align-items: center;
 padding-right: 10px;
 
 `
-
-export const MenuPostedPosts: React.FC = ()=>{
+interface ISearchPost{
+    searchPost: (e: any) => void
+}
+export const MenuPostedPosts: React.FC<ISearchPost> = (props)=>{
     return(
         <>
             <h4>Resume your work</h4>
             <WrapperMenuPostsSettings>
-                 <MenuPostsSettings />
+                 <MenuPostsSettings searchPost = {props.searchPost}/>
             </WrapperMenuPostsSettings>
         </>
     )

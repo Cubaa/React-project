@@ -1,15 +1,18 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import styled from 'styled-components'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const WrapperIconSelect = styled.div`
 display: flex;
 align-items: center;
-width:60%;
+width:45%;
 
-justify-content: flex-end;
+border: 2px solid darkblue;
+justify-content: center;
+
 >div{
     width: 22px;
     height: 22px;
+    padding-left:15px;
 }
 >div img{
     width: 100%;
@@ -59,8 +62,8 @@ padding-left: 10px;
 `
 const WrapperInput = styled.div`
 display: flex;
-width: 60%;
-
+width: 40%;
+margin-right: 10px;
 align-items: center;
 border: 0.7px solid grey;
 >input{
@@ -74,6 +77,7 @@ border: 0.7px solid grey;
 }
 >div{
  width:20%;
+ 
  display: flex;
  align-items: center;
  justify-content: center;
@@ -81,22 +85,18 @@ border: 0.7px solid grey;
  padding: 2px;
 }
 >div img{
-    width:60%;
-    height: 60%;
+    width:82.3%;
+    height: 82.3%;
 }
 
 
 `
-interface ISearchPost{
-    searchPost: (e: any) => void
-}
 
-
-export const MenuPostsSettings: React.FC<ISearchPost> = (props)=>{
+export const EntitiesMenuSettings: React.FC = ()=>{
     return(
         <>
-        <WrapperInput>
-            <input type="text" placeholder="Filter by title..." onChange={(e)=>props.searchPost(e)}/>
+         <WrapperInput>
+            <input type="text" placeholder="Search..."/>
             <div>
                 <img src="/media/search.svg" alt="search" />
             </div>

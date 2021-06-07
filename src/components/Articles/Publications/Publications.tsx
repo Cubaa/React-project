@@ -11,7 +11,6 @@ import {getUsersLatestPublications} from '../../../actions/usersLatestPublicatio
 import { userInfo } from 'node:os'
 import {PostedPostsSection} from './PostedPosts/PostedPostsSection'
 
-type GetUsersLatestPublications = ReturnType<typeof getUsersLatestPublications>
 const WrapperPublications = styled.div`
 box-sizing: border-box;
 width: 80%;
@@ -59,37 +58,28 @@ flex-direction: column;
 interface IUser{
     loggedUserData: ISingleUser[];
     userPhoto: string;
+    usersLatestPublicationsList: any
 }
 
 
 
 export const Publications: React.FC<IUser>= (props)=>{
-    console.log(props.loggedUserData)
-    const dispatch = useDispatch()
-    useEffect(()=>{
-
-        dispatch<GetUsersLatestPublications>(getUsersLatestPublications())
-    },[])
-
-    const {usersLatestPublicationsList} = useSelector<IState, IUsersLatestPublicationsReducer>(globalState=>({
-        ...globalState.usersLatestPublicationsList
-    }))
-    console.log(usersLatestPublicationsList)
+   
     // console.log(usersLatestPublicationsList.length)
   
-    const a = usersLatestPublicationsList
-  
+    const usersPublications = props.usersLatestPublicationsList
+  const b = props.usersLatestPublicationsList
  
-    const yoursPosts = a.filter((item)=>{
+    const yoursPosts = usersPublications.filter((item:any)=>{
         if(item.userId===props.loggedUserData[0].id)
             return item;
     })
     console.log(yoursPosts)
-    console.log(usersLatestPublicationsList)
+    console.log(props.usersLatestPublicationsList)
     const loggedUser = props.loggedUserData
     const userAvatar = props.userPhoto
     const userInfoData = {loggedUser, yoursPosts, userAvatar}
-    const postedPodts = {loggedUser, yoursPosts, usersLatestPublicationsList}
+    const postedPodts = {loggedUser, yoursPosts, usersPublications, b}
     return(
         <>
         <WrapperPublications>

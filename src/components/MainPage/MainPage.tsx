@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from 'react'
+import React, {FC, useEffect, useState} from 'react'
 import {Navigation} from '../Navigation/Navigation'
 import {AsideMenu} from '../AsideMenu/AsideMenu'
 import styled from 'styled-components'
@@ -12,6 +12,7 @@ import {IState} from '../../reducers'
 import {IUsersReducer} from '../../reducers/usersReducers'
 import {IUsersLatestPublicationsReducer} from '../../reducers/usersLatestPublicationsReducers'
 import {IUsersPhotosReducer} from '../../reducers/usersPhotosReducers'
+import {Profile} from '../Profile/Profile'
 
 import {
     BrowserRouter as Router,
@@ -25,15 +26,17 @@ import {getUsersPhotos} from '../../actions/usersPhotosActions'
 
 type GetUsers = ReturnType<typeof getUsers>
 type GetUsersPhotos = ReturnType<typeof getUsersPhotos>
+type GetUsersLatestPublications = ReturnType<typeof getUsersLatestPublications>
+
 
   const WrapperMainPage = styled.body`
   background-color: #dee2e6;
-  min-height: 200vh;
+  min-height: 300vh;
  
   `
 const WrapperNavigation = styled.header`
 display: flex;
-align-items: center;WE
+align-items: center;
 height:8vh;
 width:100%;
 display: flex;
@@ -44,83 +47,26 @@ box-shadow: 0 2px 8px -2px rgba(0,0,0,.2);
 justify-content: space-between;
 
 `
-const WrapperAsideMenu = styled.aside`
-width: 20%;
-height: 92vh;
-background-color: #dee2e6;
-padding-top: 20px;
-margin: 0;
-`
+
 
 const WrapperAsideMenuArticles = styled.div`
   width: 100%;
   display: flex;
 
 `
-const user = {
-    userName: "Jakub Ziemiański"
+
+type  WrapperAsideMenuType = {
+    resizeEntities: boolean;
 }
 
-const latestPublications = [
-    {
-        userId: 1,
-        publicationId: 1,
-        userName: "John Doe",
-        userImage: "/media/scott-graham-OQMZwNd3ThU-unsplash (1).jpg",
-        content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt consequatur unde quia voluptates.",
-        publicationImage: "/media/scott-graham-OQMZwNd3ThU-unsplash (1).jpg",
-        date: {
-            day: 7,
-            month: 2,
-            year: 2020
-        }, 
-    },
-    {
-        userId: 1,
-        publicationId: 1,
-        userName: "John Doe",
-        userImage: "/media/scott-graham-OQMZwNd3ThU-unsplash (1).jpg",
-        content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt consequatur unde quia voluptates.",
-        publicationImage: "/media/scott-graham-OQMZwNd3ThU-unsplash (1).jpg",
-        date: {
-            day: 7,
-            month: 2,
-            year: 2020
-        }, 
-    },
-    {
-        userId: 1,
-        publicationId: 1,
-        userName: "John Doe",
-        userImage: "/media/scott-graham-OQMZwNd3ThU-unsplash (1).jpg",
-        content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt consequatur unde quia voluptates.",
-        publicationImage: "/media/scott-graham-OQMZwNd3ThU-unsplash (1).jpg",
-        date: {
-            day: 7,
-            month: 1,
-            year: 2020
-        }, 
-    },
-    {
-        userId: 3,
-        publicationId: 1,
-        userName: "John Doe",
-        userImage: "/media/scott-graham-OQMZwNd3ThU-unsplash (1).jpg",
-        content: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt consequatur unde quia voluptates.",
-        publicationImage: "/media/scott-graham-OQMZwNd3ThU-unsplash (1).jpg",
-        date: {
-            day: 7,
-            month: 2,
-            year: 2020
-        }, 
-    },
-]
+
 export const MainPage: React.FC = ()=>{
  
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch<GetUsers>(getUsers())
         dispatch<GetUsersPhotos>(getUsersPhotos())
+        dispatch<GetUsersLatestPublications>(getUsersLatestPublications())
     }, [])
   
     
@@ -135,6 +81,24 @@ const { usersPhotosList } = useSelector<IState, IUsersPhotosReducer >(globalStat
    
     
 }))
+
+const {usersLatestPublicationsList} = useSelector<IState, IUsersLatestPublicationsReducer>(globalState=>({
+    ...globalState.usersLatestPublicationsList
+}))
+console.log(usersLatestPublicationsList)
+
+
+const [resizeEntities, setResizeEntities] = useState(false)
+
+const WrapperAsideMenu = styled.aside<WrapperAsideMenuType>`
+width: 20%;
+height: 92vh;
+background-color: #dee2e6;
+padding-top: 20px;
+margin: 0;
+display: ${resizeEntities ? "none" : "block"};
+`
+
 
  if(usersList.length===0)
     return null;
@@ -157,8 +121,23 @@ const { usersPhotosList } = useSelector<IState, IUsersPhotosReducer >(globalStat
 //     return item.data
 // })
 // console.log(userAvatar)
+const WrapperProfile = styled.div`
+display: flex;
+flex-direction: column;
+margin-top: 20px;
+width: 40%;
+background-color: whitesmoke;
+height: 100vh;
+margin: 20px auto 0;
+`
+const changeResizeEntities = (e:any)=>{
+    e.preventDefault()
+    setResizeEntities(!resizeEntities)
+    console.log(resizeEntities)
+}
 
-  const loggedUserDataPhoto = {loggedUserData, userPhoto}
+    const resize = {resizeEntities, changeResizeEntities}
+  const loggedUserDataPhoto = {loggedUserData, userPhoto, usersLatestPublicationsList}
   
     return(
 <>
@@ -170,7 +149,7 @@ const { usersPhotosList } = useSelector<IState, IUsersPhotosReducer >(globalStat
             <Navigation {...loggedUserDataPhoto}/>
          </WrapperNavigation>
          <WrapperAsideMenuArticles>
-         <WrapperAsideMenu>
+         <WrapperAsideMenu resizeEntities={resizeEntities} >
             <AsideMenu {...loggedUserDataPhoto}/>
          </WrapperAsideMenu>
       
@@ -179,7 +158,8 @@ const { usersPhotosList } = useSelector<IState, IUsersPhotosReducer >(globalStat
                     <Home />
                 </Route> */}
                 <Route exact path='/'>
-                    <Publications {...loggedUserDataPhoto}/>
+                    {/* <Publications {...loggedUserDataPhoto}/> */}
+                    <h1>Main</h1>
                 </Route> 
                 <Route path='/publications'>
                     <Publications  {...loggedUserDataPhoto} />
@@ -189,8 +169,13 @@ const { usersPhotosList } = useSelector<IState, IUsersPhotosReducer >(globalStat
                     <Ecosystem />
                 </Route>
                 <Route path='/entities'>
-                    <Entities />
+                    <Entities {...resize}/>
                 </Route> 
+                <Route path='/profile'>
+                    <WrapperProfile>
+                    <Profile />
+                   </WrapperProfile>
+                </Route>
             </Switch> 
             </WrapperAsideMenuArticles>
             </WrapperMainPage>

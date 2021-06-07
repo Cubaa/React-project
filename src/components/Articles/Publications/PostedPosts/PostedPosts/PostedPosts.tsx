@@ -8,70 +8,70 @@ const WrapperPostsPaginationPosts = styled.div`
 display: flex;
 flex-direction: column;
 height: 100%;
+
 `
 const WrapperPublishedPosts = styled.div`
 display: flex;
 flex-direction: column;
 width: 100%;
-height: 95%;
-background-color: red;
+min-height: 10vh;
+//background-color: red;
 `
 const WrapperPaginationPosts = styled.div`
 display: flex;
-flex-direction: column;
+flex-direction: row;
+justify-content:center;
 width: 100%;
 height: 5%;
-background-color: yellow;
+margin-top: 10px;
+//background-color: yellow;
 `
 interface IPostedPosts{
     loggedUser: ISingleUser[];
     yoursPosts: ISingleLatestPublication[];
-    usersLatestPublicationsList: ISingleLatestPublication[];
+    usersPublications: ISingleLatestPublication[];
+    posts: any[];
+    pagesNumber: Number;
+    resetPage: number;
+    isWrite: boolean;
 }
 
-export const  PostedPosts: React.FC<IPostedPosts> = (props)=>{
-    
-    const loggedUser = props.loggedUser
-    const yoursPosts = props.yoursPosts
-    const usersLatestPublicationsList = props.usersLatestPublicationsList
-    console.log(props.usersLatestPublicationsList)
-    const numberofAllPosts = props.usersLatestPublicationsList.length
-    const numberOfPostsArray = numberofAllPosts/10
-    const numberOfposts = 10;
-    console.log(numberOfPostsArray)
-    console.log(Math.ceil(numberOfPostsArray))
-    
-  
-
-    console.log(props.usersLatestPublicationsList.length-1)
-    
-            const allPosts:any[]=[]
-            let arrOftenPosts: ISingleLatestPublication[] = []
-        for(let i=0; i<Math.ceil(numberOfPostsArray); i++){
+export const PostedPosts: React.FC<IPostedPosts> = (props)=>{
+            const [page, setPage] = useState(0)
+            
+          console.log(props)
+            const loggedUser = props.loggedUser
+            const yoursPosts = props.yoursPosts
+            const usersPublications = props.posts
+            const numberOfPages = props.pagesNumber
+            const resetPage = props.resetPage
+            let isWrite = props.isWrite
            
-            console.log(props.usersLatestPublicationsList.length-1)
-            arrOftenPosts= props.usersLatestPublicationsList?.splice(0, props.usersLatestPublicationsList.length<10 ?  props.usersLatestPublicationsList.length : numberOfposts)
-            console.log("Loguje: ", arrOftenPosts)
-            allPosts.push(arrOftenPosts)
-        }
-        
-   console.log(allPosts)
-   useEffect(()=>{
-       console.log(allPosts)
-   },[allPosts])
-    const postedPosts = {loggedUser, allPosts, yoursPosts}
-    console.log(postedPosts)
+            useEffect(()=>{
+               
+                    setPage(resetPage)
+                   
+            }, [isWrite])
 
-
- 
+            const handleChangePageClick = (e:any)=>{
+                e.preventDefault()
+                const pageNumber = e.target.dataset.pagenumber
+               console.log(pageNumber)
+                setPage(pageNumber)
+            }
+          
+            const postedPosts = {loggedUser, usersPublications, yoursPosts, page, resetPage, isWrite}
+            const paginationInfo = {handleChangePageClick, numberOfPages, usersPublications}
+            console.log(postedPosts)
     return(
         <>
+        {console.log("rendering")}
         <WrapperPostsPaginationPosts>
             <WrapperPublishedPosts>
                 <PublishedPosts {...postedPosts}/>
             </WrapperPublishedPosts>
             <WrapperPaginationPosts>
-                <PaginationPosts data = {allPosts}/>
+           <PaginationPosts {...paginationInfo}/> 
             </WrapperPaginationPosts>
         </WrapperPostsPaginationPosts>
         </>

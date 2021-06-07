@@ -207,7 +207,7 @@ interface IUserInfoData{
     yoursPosts: ISingleLatestPublication[],
     loggedUser: ISingleUser[];
     userAvatar: string;
-    
+   
 }
 
 

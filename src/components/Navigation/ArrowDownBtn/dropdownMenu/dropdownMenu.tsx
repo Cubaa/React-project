@@ -25,7 +25,7 @@ background-color: white;
 `
 const HelperStyleDiv = styled.div`
 box-sizing:border-box;
-position absolute;
+position: absolute;
 top:-9.2%;
 left:-0.3%;
 width: 100.5%;

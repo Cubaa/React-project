@@ -19,7 +19,7 @@ position: relative;
 `
 const WrapperNotificationsBtn = styled.div`
 display: flex;
-alignt-items:center;
+align-items:center;
 
 width: 32%;
 height: 8vh;

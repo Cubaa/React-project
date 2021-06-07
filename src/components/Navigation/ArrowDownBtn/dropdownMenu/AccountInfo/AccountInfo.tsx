@@ -1,6 +1,11 @@
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
-
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
 
 const WrapperAccountInfo = styled.div`
 
@@ -155,7 +160,7 @@ export const AccountInfo: React.FC<IUser>= (props:IUser)=>{
                     </WrapperUserImg>
                     <WrapperUserInfo>
                     <span>{props.userName}</span>
-                    <a href="">See profile</a>
+                    <Link to="/profile">See profile</Link>
                     </WrapperUserInfo>
                 </li>
                 <WrapperAccountSettings>
