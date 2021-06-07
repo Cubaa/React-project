@@ -12,6 +12,7 @@ import {SelectedInfo} from './SelectedInfo/SelectedInfo'
    Field,
    FieldProps,
  } from 'formik';
+import { PanelServicesInformstions } from './PanelServicesInformations/PanelServicesInformations'
  
  interface MyFormValues {
    firstName: string;
@@ -69,7 +70,15 @@ display: flex;
 
 
 `
+const PanelServicesInformationsWrapper = styled.div`
+width: 100%;
+min-height: 10vh;
 
+display: flex;
+flex-direction: column;
+align-items: center;
+
+`
 const ProfileSelectedWrapper = styled.div`
 width: 100%;
 min-height: 30vh;
@@ -175,6 +184,9 @@ console.log(edit)
         <ProfileSelectedWrapper>
             <SelectedInfo {...editInfo2}/>
         </ProfileSelectedWrapper>
+        <PanelServicesInformationsWrapper>
+          <PanelServicesInformstions />
+        </PanelServicesInformationsWrapper>
         </>
     )
 }

@@ -127,7 +127,7 @@ flex-direction: column;
 margin-top: 20px;
 width: 40%;
 background-color: whitesmoke;
-height: 100vh;
+min-height: 100vh;
 margin: 20px auto 0;
 `
 const changeResizeEntities = (e:any)=>{

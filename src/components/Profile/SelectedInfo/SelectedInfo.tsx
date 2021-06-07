@@ -134,6 +134,10 @@ margin-bottom: 10px;
 }
 
 `
+const LineWrapper = styled.div`
+width: 100%;
+height: 1px; background-color: lightgray;
+`
 
 interface IEdit {
         handleEditData2: (selectedForm: any) => void;
@@ -259,8 +263,9 @@ for(let i=0; i<1; i++){
 
 return(
     <>
+    <LineWrapper></LineWrapper>
     <IconWrapper>
-            <FontAwesomeIcon onClick={()=>props.handleEditData2(document.querySelector<HTMLFormElement>('.selectedForm'))} style={{marginRight: "10px", cursor: "pointer"}} icon= {props.edit2===true ? ['fas', 'save'] : ['fas', 'pencil-alt']} />
+            <FontAwesomeIcon onClick={()=>props.handleEditData2(document.querySelector<HTMLFormElement>('.selectedForm'))} style={{marginRight: "10px", marginTop: "5px", cursor: "pointer"}} icon= {props.edit2===true ? ['fas', 'save'] : ['fas', 'pencil-alt']} />
             </IconWrapper>
         {choosenInfo}
     </>
