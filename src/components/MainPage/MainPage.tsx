@@ -125,7 +125,7 @@ const WrapperProfile = styled.div`
 display: flex;
 flex-direction: column;
 margin-top: 20px;
-width: 40%;
+width: 55%;
 background-color: whitesmoke;
 min-height: 100vh;
 margin: 20px auto 0;
@@ -138,6 +138,7 @@ const changeResizeEntities = (e:any)=>{
 
     const resize = {resizeEntities, changeResizeEntities}
   const loggedUserDataPhoto = {loggedUserData, userPhoto, usersLatestPublicationsList}
+  const loggedUserProfile = {loggedUserData, userPhoto}
   
     return(
 <>
@@ -173,7 +174,7 @@ const changeResizeEntities = (e:any)=>{
                 </Route> 
                 <Route path='/profile'>
                     <WrapperProfile>
-                    <Profile />
+                    <Profile {...loggedUserProfile}/>
                    </WrapperProfile>
                 </Route>
             </Switch> 

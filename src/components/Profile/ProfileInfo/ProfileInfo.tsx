@@ -66,6 +66,7 @@ interface IEditData {
         email: string;
         telephone: string;
     };
+
 }
 
 export const ProfileInfo: React.FC<IEditData> = (props)=>{

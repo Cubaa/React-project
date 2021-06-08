@@ -3,6 +3,10 @@ import styled from 'styled-components'
 import {ProfileInfo} from './ProfileInfo/ProfileInfo'
 import {ProfileImage} from './ProfileImage/ProfileImage'
 import {SelectedInfo} from './SelectedInfo/SelectedInfo'
+import {Proposal} from './Proposal/Proposal'
+import {InternalReviews} from './InternalReviews/InternalReviews'
+import {Amount} from './Amount/Amount'
+import {ISingleUser} from '../../entities/users'
 
  import {
    Formik,
@@ -21,18 +25,19 @@ const SettingsProfileWrapper = styled.div`
 
 width: 100%;
 height: 5vh;
-background-color: grey;
+
 display: flex;
 justify-content: flex-end;
 align-items: center;
+padding-bottom: 10px;
 >div{
 width: 25%;
 padding-left: 5px;
 height: 5vh;
 display: flex;
-justify-content: flex-start;
+justify-content: center;
 align-items: center;
-background-color: red;
+
 }
 >div:nth-last-of-type(3){
 width: 15%;
@@ -41,6 +46,7 @@ width: 15%;
 >div a{
     text-decoration: none;
     color: darkblue;
+    font-weight: bold;
 }
 `
 const ProfileMenuWrapper = styled.div`
@@ -78,20 +84,86 @@ display: flex;
 flex-direction: column;
 align-items: center;
 
+
 `
 const ProfileSelectedWrapper = styled.div`
 width: 100%;
 min-height: 30vh;
 
 `
-export const Profile:React.FC = ()=>{
+
+const ProposalWrapper = styled.div`
+min-height: 10vh;
+width: 100%;
+
+
+  >h3{
+    margin:0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 10px;
+    padding-top: 10px;
+    box-sizing: border-box;
+    color: darkblue;
+margin-bottom: 14px;
+margin-top: 10px;
+}
+`
+
+const InternalReviewsWrapper = styled.div`
+min-height: 10vh;
+width: 100%;
+
+
+  >h3{
+    margin:0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 10px;
+    padding-top: 10px;
+    box-sizing: border-box;
+    color: darkblue;
+margin-bottom: 14px;
+margin-top: 10px;
+}
+`
+const AmountWrapper = styled.div`
+min-height: 10vh;
+width: 100%;
+
+
+  >h3{
+    margin:0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 10px;
+    padding-top: 10px;
+    box-sizing: border-box;
+    color: darkblue;
+margin-bottom: 14px;
+margin-top: 10px;
+}
+`
+
+interface IUserData{
+  loggedUserData: ISingleUser[];
+  userPhoto: string;
+}
+
+export const Profile:React.FC<IUserData> = (props)=>{
   const [inputValue, setInputValue] = useState({
-    name: "Humberta Swift",
-    company: "Clifford Chance", 
-    city: "New York",
-    job: "Partner",
-    email: "humbertaswift@gmail.com",
-    telephone: "123456878785"
+    name: props.loggedUserData[0].name,
+    company: props.loggedUserData[0].company.name, 
+    city: props.loggedUserData[0].address.city,
+    job: props.loggedUserData[0].company.catchPhrase,
+    email: props.loggedUserData[0].email,
+    telephone: "+32 34384782763"
 })
 const [selectValue, setSelectValue] = useState({
   slct1: "Mergers and  qcquiston",
@@ -164,6 +236,7 @@ console.log(edit)
       }
       console.log(selectValue)
     }
+    const userImage = props.userPhoto
     const editInfo = {handleEditData, edit, inputValue}
     const editInfo2 = {handleEditData2, edit2, selectValue}
     return(
@@ -175,7 +248,7 @@ console.log(edit)
         </SettingsProfileWrapper>
         <ProfileMenuWrapper>
           <ProfileImageWrapper>
-            <ProfileImage />
+            <ProfileImage image = {userImage}/>
             </ProfileImageWrapper>
             <ProfileInfoWrapper>
             <ProfileInfo {...editInfo}/>
@@ -187,6 +260,15 @@ console.log(edit)
         <PanelServicesInformationsWrapper>
           <PanelServicesInformstions />
         </PanelServicesInformationsWrapper>
+        <ProposalWrapper>
+            <Proposal />
+        </ProposalWrapper>
+        <InternalReviewsWrapper>
+          <InternalReviews />
+          </InternalReviewsWrapper>
+          <AmountWrapper>
+            <Amount />
+          </AmountWrapper>
         </>
     )
 }

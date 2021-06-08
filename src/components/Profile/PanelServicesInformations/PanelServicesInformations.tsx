@@ -6,7 +6,7 @@ import {ServicesProjects} from './ServicesProjects/ServicesProjects'
 const LineWrapper = styled.div`
 width: 100%;
 height: 1px;
-
+background-color: lightgray;
 `
 const PanelInformationsWrapper = styled.div`
 box-sizing: border-box;
@@ -30,7 +30,33 @@ min-height: 20vh;
 const ServicesProjectsWrapper = styled.div`
 width:100%;
 min-height: 20vh;
-background-color: yellow;
+display: flex;
+flex-direction: column;
+align-items: center;
+>h3{
+    margin:0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 10px;
+    padding-top: 10px;
+    box-sizing: border-box;
+    color: darkblue;
+}
+>p{
+    margin:0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 10px;
+    padding-top: 10px;
+    box-sizing: border-box;
+    color: darkblue;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
 `
 
 export const PanelServicesInformstions: React.FC = ()=>{
