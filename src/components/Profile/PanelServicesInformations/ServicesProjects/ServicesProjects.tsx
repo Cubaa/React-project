@@ -33,8 +33,14 @@ align-items: center;
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    border: 1px solid black;
+  
     margin-right: 10px;
+}
+>div>img{
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 >span{
     font-weight: bold;
@@ -53,7 +59,12 @@ const WrapperProfile = styled.div`
     color: darkblue;
 }`
 
-export const ServicesProjects:React.FC = ()=>{
+
+interface IUserImage{
+    image: string;
+}
+
+export const ServicesProjects:React.FC<IUserImage> = (props)=>{
     return(
         <>
         <h3>Services & Projects</h3>
@@ -62,7 +73,7 @@ export const ServicesProjects:React.FC = ()=>{
             <div>
                 <WrapperUserInfo>
                     <div>
-                        <img src="" alt="" />
+                        <img src={props.image} alt="" />
                     </div>
                     <span>Firstname Lastname</span>
                 </WrapperUserInfo>
@@ -78,7 +89,7 @@ export const ServicesProjects:React.FC = ()=>{
             <div>
                 <WrapperUserInfo>
                     <div>
-                        <img src="" alt="" />
+                        <img src={props.image} alt="" />
                     </div>
                     <span>Firstname Lastname</span>
                 </WrapperUserInfo>

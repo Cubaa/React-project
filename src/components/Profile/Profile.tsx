@@ -258,7 +258,7 @@ console.log(edit)
             <SelectedInfo {...editInfo2}/>
         </ProfileSelectedWrapper>
         <PanelServicesInformationsWrapper>
-          <PanelServicesInformstions />
+          <PanelServicesInformstions image={userImage}/>
         </PanelServicesInformationsWrapper>
         <ProposalWrapper>
             <Proposal />

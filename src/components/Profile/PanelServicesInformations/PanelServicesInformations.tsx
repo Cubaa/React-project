@@ -58,8 +58,10 @@ align-items: center;
     margin-bottom: 10px;
 }
 `
-
-export const PanelServicesInformstions: React.FC = ()=>{
+interface IUserImage {
+    image: string;
+}
+export const PanelServicesInformstions: React.FC<IUserImage> = (props)=>{
     return(
         <>
         <LineWrapper></LineWrapper>
@@ -67,7 +69,7 @@ export const PanelServicesInformstions: React.FC = ()=>{
             <PanelInformations />
         </PanelInformationsWrapper>
         <ServicesProjectsWrapper>
-            <ServicesProjects />
+            <ServicesProjects image={props.image}/>
         </ServicesProjectsWrapper>
         </>
     )
