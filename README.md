@@ -1,4 +1,4 @@
-Projekt (na zajęcia) jest pisany w React + TypeScript i nie jest jeszcze ukończony, ale pokazuje choć podstawową znajomość Reacta + Reduxa i TypeScripta. Na bieżąco jest aktualizowany.
+Projekt (na zajęcia) pisany w React + TypeScript.
 
 # Getting Started with Create React App
 
