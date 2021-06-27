@@ -27,7 +27,7 @@ width: 100%;
     color: grey;
 }
 >ul{
-    border-box: box-sizing;
+    box-sizing: border-box;;
     padding: 0;
     margin:0;
     list-style: none;
@@ -148,7 +148,7 @@ interface IUser{
 }
 
 export const AccountInfo: React.FC<IUser>= (props:IUser)=>{
-    console.log(props.userName)
+    
     return(
         <>
         <WrapperAccountInfo>

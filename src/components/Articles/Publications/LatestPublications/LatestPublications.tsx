@@ -66,7 +66,7 @@ display: flex;
     text-align: left;
     text-decoration: none;
 }
->p: nth-of-type(1){
+>p:nth-of-type(1){
     display: flex;
     font-size: 12px;
  
@@ -76,11 +76,11 @@ display: flex;
     padding: 0px 0px 5px 5px;
   
 }
->p: nth-of-type(1) span{
+>p:nth-of-type(1) span{
    margin-right: 8px;
    color: rgba(255, 255, 255, 0.8);
 }
->p: nth-of-type(1) div{
+>p:nth-of-type(1) div{
     background-color: yellow;
     width: 20px;
     height: 20px;
@@ -88,7 +88,7 @@ display: flex;
     border: 1px solid black;
     margin-right: 8px;
  }
- >p: nth-of-type(1) div img{
+ >p:nth-of-type(1) div img{
     width: 100%;
     height: 100%;
     border-radius: 50%;
@@ -189,7 +189,7 @@ justify-content: center;
     border-radius: 50%;
     margin-right: 8px;
 }
->p: nth-of-type(1) div img{
+>p:nth-of-type(1) div img{
     width: 100%;
     height: 100%;
     border-radius: 50%;
@@ -215,13 +215,13 @@ interface IUserInfoData{
 
 export const LatestPublications: React.FC<IUserInfoData> = (props)=>{
 
-   console.log("chujek")
+ 
    const newArrayusersLatestpublicationsList = props.yoursPosts?.map((item)=>item)
     newArrayusersLatestpublicationsList?.splice(0, (newArrayusersLatestpublicationsList.length-1)-3)
     const theNewestPublications = newArrayusersLatestpublicationsList?.splice(0, 1)
     
-    console.log(newArrayusersLatestpublicationsList)
-    console.log(theNewestPublications)
+    
+    
 
 
      
@@ -229,8 +229,7 @@ export const LatestPublications: React.FC<IUserInfoData> = (props)=>{
 const otherLatestPublications = newArrayusersLatestpublicationsList?.map((publication)=>{
 return(
        <>
-       {/* {console.log("LISTA PUBLIKCAJI " + usersLatestPublicationsList)}
-       {console.log(usersLatestPublicationsList)} */}
+       
 
             
            <WrapperLatestPublicationCard>

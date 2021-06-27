@@ -28,7 +28,7 @@ export const NavInput: React.FC = ()=>{
     const [valueFromNavInput, setValueFromNavInput] = useState("")
 
     const inputHandler = (e:React.ChangeEvent<HTMLInputElement>)=>{
-      console.log(e.target.value)
+      
      setValueFromNavInput(e.target.value)
     }
 

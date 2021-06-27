@@ -13,12 +13,14 @@ import {IUsersReducer} from '../../reducers/usersReducers'
 import {IUsersLatestPublicationsReducer} from '../../reducers/usersLatestPublicationsReducers'
 import {IUsersPhotosReducer} from '../../reducers/usersPhotosReducers'
 import {Profile} from '../Profile/Profile'
+import {Workspaces} from '../Workspaces/Workspaces'
 
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link,
+    useParams
   } from "react-router-dom";
 import {getUsers} from '../../actions/usersActions'
 import {getUsersLatestPublications} from '../../actions/usersLatestPublicationsAction'
@@ -54,14 +56,20 @@ const WrapperAsideMenuArticles = styled.div`
   display: flex;
 
 `
+const WorkspacesWrapper = styled.div`
 
+width: 75%;
+min-height: 5vh;
+
+margin: 20px auto;
+`
 type  WrapperAsideMenuType = {
     resizeEntities: boolean;
 }
 
 
 export const MainPage: React.FC = ()=>{
- 
+  
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch<GetUsers>(getUsers())
@@ -70,22 +78,22 @@ export const MainPage: React.FC = ()=>{
     }, [])
   
     
-    // console.log(latestPublications)
+    
    const { usersList } = useSelector<IState, IUsersReducer >(globalState =>({
     ...globalState.users,
    
     
 }))
-const { usersPhotosList } = useSelector<IState, IUsersPhotosReducer >(globalState =>({
+    const { usersPhotosList } = useSelector<IState, IUsersPhotosReducer >(globalState =>({
     ...globalState.usersPhotosList,
    
     
 }))
 
-const {usersLatestPublicationsList} = useSelector<IState, IUsersLatestPublicationsReducer>(globalState=>({
+    const {usersLatestPublicationsList} = useSelector<IState, IUsersLatestPublicationsReducer>(globalState=>({
     ...globalState.usersLatestPublicationsList
 }))
-console.log(usersLatestPublicationsList)
+
 
 
 const [resizeEntities, setResizeEntities] = useState(false)
@@ -107,20 +115,11 @@ display: ${resizeEntities ? "none" : "block"};
       if(user.username==='Bret')
         return user;
   })
-//   console.log(usersPhotosList[0]?.data.avatar.length)
+   
   const userPhotoInfo = Object.values(usersPhotosList)
 
   const userPhoto = userPhotoInfo[0]?.avatar
-  console.log(userPhoto)
 
-
-
-      
-  
-// const userAvatar = userPhotoInfo?.map((item)=>{
-//     return item.data
-// })
-// console.log(userAvatar)
 const WrapperProfile = styled.div`
 display: flex;
 flex-direction: column;
@@ -133,7 +132,7 @@ margin: 20px auto 0;
 const changeResizeEntities = (e:any)=>{
     e.preventDefault()
     setResizeEntities(!resizeEntities)
-    console.log(resizeEntities)
+    
 }
 
     const resize = {resizeEntities, changeResizeEntities}
@@ -143,8 +142,6 @@ const changeResizeEntities = (e:any)=>{
     return(
 <>
     <Router>
-
-      
         <WrapperMainPage>
         <WrapperNavigation>
             <Navigation {...loggedUserDataPhoto}/>
@@ -155,17 +152,12 @@ const changeResizeEntities = (e:any)=>{
          </WrapperAsideMenu>
       
          <Switch>
-                {/* <Route path='/'>
-                    <Home />
-                </Route> */}
                 <Route exact path='/'>
-                    {/* <Publications {...loggedUserDataPhoto}/> */}
-                    <h1>Main</h1>
+                    <Publications {...loggedUserDataPhoto}/>
                 </Route> 
                 <Route path='/publications'>
-                    <Publications  {...loggedUserDataPhoto} />
+                  <h1>Publications</h1>
                 </Route> 
-                
                 <Route path='/ecosystem'>
                     <Ecosystem />
                 </Route>
@@ -176,6 +168,11 @@ const changeResizeEntities = (e:any)=>{
                     <WrapperProfile>
                     <Profile {...loggedUserProfile}/>
                    </WrapperProfile>
+                </Route>
+                <Route path='/:name'>
+                    <WorkspacesWrapper>
+                        <Workspaces />
+                    </WorkspacesWrapper>
                 </Route>
             </Switch> 
             </WrapperAsideMenuArticles>

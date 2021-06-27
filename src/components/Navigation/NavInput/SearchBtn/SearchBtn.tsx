@@ -15,7 +15,7 @@ cursor: pointer;
 `
 export const SearchBtn: React.FC<ISearchBtn> = (props)=>{
     const searchCluster = (props: ISearchBtn)=>{
-        console.log(props.clusterValue)
+        
     }
     return(
         <WrapperSearchBtn>

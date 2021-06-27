@@ -16,16 +16,24 @@ export const EntitiesContent: React.FC<IEntitiesContent> = (props)=>{
     width: ${props.view==="M" ? "23%" : "50%"};
 
     height: 15vh;
-    background-color: lightpink;
+   background-color: whitesmoke;
     display: flex;
     margin: 10px;
+    >div{
+        box-shadow: 0 1px 6px -2px rgba(0,0,0,.2), 0 1px 6px -2px rgba(0,0,0,.2);
+    
+
+    }
+    >span{
+        font-size: 8px;
+    }
     >div:nth-of-type(1){
         width: 40%;
         height: 15vh;
-        background-color: red;
+        
     }
     >div:nth-of-type(2){
-        background-color: brown;
+      
     width: 80%;
     height: 15vh;
     display: flex;
@@ -44,13 +52,14 @@ export const EntitiesContent: React.FC<IEntitiesContent> = (props)=>{
         color: darkblue;
         text-align: left;
         font-weight: bold;
+       
     }
     >div:nth-of-type(2)> div> span{
         width:100%;
         padding:2px;
         color: lightgrey;
         text-align: left;
-        font-size: 12px;
+        font-size: 8px;
             }        
     >div>img{
         width: 100%;
@@ -58,7 +67,7 @@ export const EntitiesContent: React.FC<IEntitiesContent> = (props)=>{
         object-fit: cover;
     }
     `
-    console.log(props.view)
+    
 
     const entities = []
 
@@ -69,10 +78,10 @@ export const EntitiesContent: React.FC<IEntitiesContent> = (props)=>{
                     <img src={i%2===0 ? "/media/hector-j-rivas-1FxMET2U5dU-unsplash.jpg" : "/media/mediensturmer-aWf7mjwwJJo-unsplash.jpg"} alt="image" />
                 </div>
                 <div>
-                   <span>{i%2===0 ? "Subsid Corp Ltd" : "World company SAS" }</span>
+                   <span style={{margin: "0"}}>{i%2===0 ? "Subsid Corp Ltd" : "World company SAS" }</span>
                    <div>
-                    <p>Caracas 1050, Distrito Capital,</p>
-                    <span>Wenezuela</span>
+                    <p style={{fontSize: "12px", margin: "0", paddingTop: "12px"}}>Caracas 1050, Distrito Capital,</p>
+                    <span style={{margin: "0", padding: "0", fontSize: "12px", color: "black"}}>Wenezuela</span>
                 </div>
                 </div>
             </WrapperEntitiesCard>)
@@ -84,10 +93,10 @@ export const EntitiesContent: React.FC<IEntitiesContent> = (props)=>{
         <><WrapperEntitiesCard view={props.view} >
                 <div style={{backgroundColor:"white"}}>
                 </div>
-                <div>
-                   <span>ABC Generic company</span>
-                    <p>Caracas 1050, Distrito Capital,</p>
-                    <span>Wenezuela</span>
+                <div style={{display: "flex", justifyContent: "flex-start"}}>
+                   <span style={{padding: "2px", margin: "0"}}>ABC Generic company</span>
+                    <p style={{margin: "0", color: "black"}}>Caracas 1050, Distrito Capital,</p>
+                    <span style={{fontSize: "12px", margin: "0"}}>Wenezuela</span>
                 </div>
                 </WrapperEntitiesCard>
         {entities}

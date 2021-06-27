@@ -60,7 +60,7 @@ interface IUserInfo{
 
 
 export const ProfileMenu: React.FC<IUserInfo>= (props)=>{
-    console.log(props.userData)
+    
     return(
         <>
         <WrapperProfileDetails>

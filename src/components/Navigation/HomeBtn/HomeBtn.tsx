@@ -1,7 +1,13 @@
 import React from 'react'
 
 import styled from 'styled-components'
-
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useParams
+  } from "react-router-dom";
 
 const WrapperHomeBtn = styled.div`
 display: flex;
@@ -27,9 +33,9 @@ text-align: right;
 export const HomeBtn: React.FC = ()=>{
     return(
         <WrapperHomeBtn>
-        <a href="#">
+        <Link to="/">
             <img src="/media/house2.svg" alt="homeBtn" style={{width:'100%', height:'100%'}}/>
-        </a>
+        </Link>
         <span>Home</span>
         </WrapperHomeBtn>
     )

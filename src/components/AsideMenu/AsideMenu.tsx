@@ -23,8 +23,8 @@ interface IUserData{
     catchPhrase: string;
 }
 export const AsideMenu: React.FC<IUser> = (props) =>{
-    console.log(props?.loggedUserData)
-    console.log(props.loggedUserData[0].name)
+    
+    
     const userData:IUserData = {
         name: props.loggedUserData[0].name, 
         companyName: props.loggedUserData[0].company.name,

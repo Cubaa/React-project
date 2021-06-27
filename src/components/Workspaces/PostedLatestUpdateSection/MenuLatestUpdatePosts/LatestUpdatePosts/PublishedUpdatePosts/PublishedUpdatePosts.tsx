@@ -3,14 +3,7 @@ import styled from 'styled-components'
 import {ISingleLatestPublication} from '../../../../../../entities/usersLatestPosts'
 import {ISingleUser} from '../../../../../../entities/users'
 
-interface IPostedPosts{
-    loggedUser: ISingleUser[];
-    usersPublications: ISingleLatestPublication[];
-    yoursPosts: ISingleLatestPublication[];
-    page: number;
-    resetPage: number;
-    isWrite: boolean;
-}
+
 
 const WrapperSingleCard = styled.div`
 box-sizing: border-box;
@@ -68,23 +61,23 @@ color: rgba(0,0,0, 0.5);
  
     font-size: 12px;
 }
+
 `
+
+interface IPostedPosts{
+    usersPublications: any;
+    page: number;
+    resetPage: number;
+    isWrite: boolean;
+}
 export const PublishedPosts: React.FC<IPostedPosts> = (props)=>{
     const resetPage = props.resetPage
     let page = props.page
    
     const filteredCard = props.usersPublications.filter((el:any, index:any)=>{
-        
-        
             return el
-        
-        
-            
     })
    
-    
-
-    //   const publicationCards= [filteredCard[props.page]]?.map((item:any, index:any)=>{
         const publicationCards= [filteredCard[props.page]]?.map((item:any, index:any)=>{
         return(
          
@@ -92,18 +85,16 @@ export const PublishedPosts: React.FC<IPostedPosts> = (props)=>{
                {item?.map((el:any)=>{return(
                    <WrapperSingleCard>
                         <p>{el.title}</p>
-                        <p>{el.body}</p>
+                        <p>{el.content}</p>
                         <WrapperCardInfo>
-                            <span>{props.loggedUser[0].company.name}</span>
+                            <span>{el.sign}</span>
                             <div></div>
                             <span>Client contract</span>
                             <div></div>
-                            <span>updated 3 days ago by {props.loggedUser[0].username}</span>
+                            <span>updated 3 days ago by John Doe</span>
                         </WrapperCardInfo>
                     </WrapperSingleCard>
                )})}
-               
-                {/* <p>{}</p> */}
             </div>
         )
    })

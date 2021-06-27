@@ -178,12 +178,12 @@ const [selectValue, setSelectValue] = useState({
    
 
     const handleEditData = (e:any, firstEditForm:any, secondEditForm: any)=>{
-   console.log("FORMMMMM")
+   
    if(firstEditForm!==null){
-   console.log(firstEditForm)
+   
    const formData = new FormData(firstEditForm)
    const formData2 = new FormData(secondEditForm)
-   console.log(formData.getAll('name'))
+   
    const name = formData.getAll('name')
    const company = formData.getAll('company')
    const city = formData.getAll('city')
@@ -204,20 +204,20 @@ const [selectValue, setSelectValue] = useState({
 
    }
 
-console.log(inputValue)
+
 
       setEdit(!edit)
-console.log(edit)
+
     } 
 
     const handleEditData2 = (selectedForm:any)=>{
       setEdit2(!edit2)
-      console.log(edit2)
+      
       if(selectedForm!==null){
-        console.log(selectedForm)
+        
         const formData = new FormData(selectedForm)
       
-        console.log(formData.getAll('slct1'))
+        
         const slct1 = formData.getAll('slct1')
         const slct2 = formData.getAll('slct2')
         const slct3 = formData.getAll('slct3')
@@ -234,7 +234,7 @@ console.log(edit)
           slct6:  `${slct6[0] === "" ? selectValue.slct6 : slct6[0]}`, 
        })
       }
-      console.log(selectValue)
+      
     }
     const userImage = props.userPhoto
     const editInfo = {handleEditData, edit, inputValue}

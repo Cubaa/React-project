@@ -14,8 +14,6 @@ flex-direction: column;
 align-items: center;
 width: 100%;
 height: 56vh;
-
-justify-center: flex-start;
 overflow-y: scroll;
 `
 const WrapperPlatformList = styled.div`
@@ -48,6 +46,7 @@ height: auto;
 display: flex;
 flex-direction: column;
 
+
 >p{
     box-sizing: border-box;
     margin:0;
@@ -61,8 +60,8 @@ flex-direction: column;
 }
 `
 const PlatformList = styled.ul`
-diplay: flex;
-flex-direction: row;
+display: flex;
+flex-direction: column;
 align-items: center;
 padding:0;
 margin: 0;
@@ -100,8 +99,8 @@ padding-right: 14px;
 
 `
 const WorkspacesList = styled.ul`
-diplay: flex;
-flex-direction: row;
+display: flex;
+flex-direction: column;
 align-items: center;
 padding:0;
 margin: 0;
@@ -144,7 +143,7 @@ interface ICategories{
 }
 
 export const PlatformWorkspacesLists: React.FC<ICategories> = (props: ICategories)=>{
-    console.log(props)
+    
     
     const platformListitems = props.dropdownMenuElements.map((item: any, index: number)=>{
         if(item.label==="Platform"){
@@ -162,20 +161,22 @@ export const PlatformWorkspacesLists: React.FC<ICategories> = (props: ICategorie
     })
     const workspacesListitems = props.dropdownMenuElements.map((item: any, index: number)=>{
         if(item.label==="Workspaces"){
+        
         return(
         <li key={index.toString()}>
         <IconImageWrapper>
         <img src={item.iconImg} alt="icon"/>
         </IconImageWrapper>
-        <a href="#">
+        <Link to={`${item.categoryName}`}>
             {item.categoryName}
-        </a>
+        </Link>
     </li>
+     
         )
+       
         }
     })
-    // if(props.platformCategory.length!==0)
-    //     console.log(platformListitems)
+       
     return(
         <>
         <WrapperPlatformWorkspacesLists>

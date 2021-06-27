@@ -115,7 +115,7 @@ export const Entities: React.FC<IResizeEntities>= (props)=>{
     box-sizing: border-box;
     width: 100%;
     height: 150vh;
-    margin-top: 10px;
+    margin-top: 40px;
     
     display: flex;
     flex-wrap: ${view==="M" ? "wrap" : "nowrap"};

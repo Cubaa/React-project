@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
+import {PublishedPosts} from '../LatestUpdatePosts/PublishedUpdatePosts/PublishedUpdatePosts'
 import {PaginationPosts} from './PaginationPosts/PaginationPosts'
-import {PublishedPosts} from './PublishedPosts/PublishedPosts'
-import {ISingleLatestPublication} from '../../../../../entities/usersLatestPosts'
-import {ISingleUser} from '../../../../../entities/users'
 const WrapperPostsPaginationPosts = styled.div`
 display: flex;
 flex-direction: column;
@@ -26,23 +24,20 @@ height: 5%;
 margin-top: 10px;
 //background-color: yellow;
 `
-interface IPostedPosts{
-    loggedUser: ISingleUser[];
-    yoursPosts: ISingleLatestPublication[];
-    usersPublications: ISingleLatestPublication[];
-    posts: any[];
-    pagesNumber: Number;
+interface ILatestPostedPosts{
+    usersLatestUpdatePublications: any[];
+    posts: any;
+    pagesNumber: any;
     resetPage: number;
     isWrite: boolean;
 }
 
-export const PostedPosts: React.FC<IPostedPosts> = (props)=>{
-            const [page, setPage] = useState(0)
+export const LatestUpdatePosts: React.FC<ILatestPostedPosts> = (props)=>{
+    const [page, setPage] = useState(0)
             
           
-            const loggedUser = props.loggedUser
-            const yoursPosts = props.yoursPosts
-            const usersPublications = props.posts
+        
+         const usersPublications = props.posts
             const numberOfPages = props.pagesNumber
             const resetPage = props.resetPage
             let isWrite = props.isWrite
@@ -60,12 +55,12 @@ export const PostedPosts: React.FC<IPostedPosts> = (props)=>{
                 setPage(pageNumber)
             }
           
-            const postedPosts = {loggedUser, usersPublications, yoursPosts, page, resetPage, isWrite}
+            const postedPosts = {usersPublications, page, resetPage, isWrite}
             const paginationInfo = {handleChangePageClick, numberOfPages, usersPublications}
             
     return(
         <>
-        
+         
         <WrapperPostsPaginationPosts>
             <WrapperPublishedPosts>
                 <PublishedPosts {...postedPosts}/>
@@ -75,5 +70,6 @@ export const PostedPosts: React.FC<IPostedPosts> = (props)=>{
             </WrapperPaginationPosts>
         </WrapperPostsPaginationPosts>
         </>
+        
     )
 }

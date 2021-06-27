@@ -123,7 +123,7 @@ const [searchMenuelements, setSearchMenuElements] = useState([...platformsWorksp
 
         })
         setSearchMenuElements(searchMenuelements)
-        console.log(searchMenuelements)
+        
      
     }
     const userName = props.userName

@@ -36,20 +36,19 @@ interface IPagination{
 export const  PaginationPosts: React.FC<IPagination> = (props)=>{
    
 
-        const numbers:number[] = []
+    const numbers:number[] = []
 
-        for(let i=0;i<props.numberOfPages;i++){
-            numbers.push(i)
-            }
+    for(let i=0;i<props.numberOfPages;i++){
+        numbers.push(i)
+        }
 
-
-       const pagination = numbers.map((num:number, index:number)=>{
+       const pagination = numbers.map((num, index)=>{
         return(<SingleIcon key={index} data-pagenumber = {index} onClick = {(e) =>props.handleChangePageClick(e)}>{index+1}</SingleIcon>)
     })
     return(
         <>                  
             <WrapperPagination>
-               {pagination}
+                {pagination}
             </WrapperPagination>
         </>
     )

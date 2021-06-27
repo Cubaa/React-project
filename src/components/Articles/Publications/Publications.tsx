@@ -65,21 +65,20 @@ interface IUser{
 
 export const Publications: React.FC<IUser>= (props)=>{
    
-    // console.log(usersLatestPublicationsList.length)
+    
   
     const usersPublications = props.usersLatestPublicationsList
-  const b = props.usersLatestPublicationsList
  
     const yoursPosts = usersPublications.filter((item:any)=>{
         if(item.userId===props.loggedUserData[0].id)
             return item;
     })
-    console.log(yoursPosts)
-    console.log(props.usersLatestPublicationsList)
+    
+    
     const loggedUser = props.loggedUserData
     const userAvatar = props.userPhoto
     const userInfoData = {loggedUser, yoursPosts, userAvatar}
-    const postedPodts = {loggedUser, yoursPosts, usersPublications, b}
+    const postedPodts = {loggedUser, yoursPosts, usersPublications}
     return(
         <>
         <WrapperPublications>
