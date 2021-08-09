@@ -1,4 +1,4 @@
-Projekt (na zajęcia) pisany w React + TypeScript.
+Projekt (na zajęcia) pisany w React, TypeScript, Redux, Styled Components.
 
 # Getting Started with Create React App
 
